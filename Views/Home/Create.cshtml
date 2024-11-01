@@ -1,0 +1,43 @@
+﻿@model HomeCreateViewModel
+
+@inject IStaffRepository _staffRepo
+
+@{
+    ViewBag.Title = "Create Staff";
+}
+
+<form enctype="multipart/form-data" asp-controller="home" asp-action="create" method="post">
+    <div class="form-group row mt-2">
+        <label asp-for="FirstName" class="col-sm-2 col-form-label"></label>
+        <input asp-for="FirstName" class="col-sm-6" placeholder="First Name" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="form-group row mt-2">
+        <label asp-for="LastName" class="col-sm-2 col-form-label"></label>
+        <input asp-for="LastName" class="col-sm-6" placeholder="Last Name" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="form-group row mt-2">
+        <label asp-for="Email" class="col-sm-2 col-form-label"></label>
+        <input asp-for="Email" class="col-sm-6" placeholder="Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group row mt-2">
+        <label asp-for="Department" class="col-sm-2 col-form-label"></label>
+        <select asp-for="Department" class="col-sm-4" asp-items="Html.GetEnumSelectList<Departments>()">
+            <option value="">Please Select</option>
+        </select>
+        <span asp-validation-for="Department" class="text-danger"></span>
+    </div>
+    <div class="form-group row mt-2">
+        <label asp-for="Photo" class="col-sm-2 col-form-label"></label>
+        <div class="custom-file ">
+            <input asp-for="Photo" class="col-sm-6 form-control custom-file-input" />
+            <label class="custom-file-label">Choose File</label>
+        </div>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary mt-3">Create</button>
+    </div>
+    <div asp-validation-summary="All" class="text-danger"></div>
+</form>

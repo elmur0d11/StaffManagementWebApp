@@ -1,0 +1,28 @@
+﻿@model HomeIndexViewModel
+@{
+    ViewBag.Title = "Staff List";
+}
+
+<div class="card-deck">
+    @foreach (var staff in Model.Staffs)
+    {
+        var photoFilePath = "~/images/" + (staff.PhotoFilePath ?? "user.jpg");
+        <div class="row row-cols-1 row-cols-md-4 g-4 m-3 justify-content-center">
+            <div class="card m-3">
+                <div class="card-header">
+                    <h4>@staff.FirstName @staff.LastName</h4>
+                </div>
+                <img class="card-img-top" src="@photoFilePath" asp-append-version="true"/>
+                <div class="card-footer text-center flex">
+                    <a asp-controller="home" asp-action="details" asp-route-Id="@staff.Id" class="btn btn-primary m-1">View</a>
+                    <a asp-controller="home" asp-action="edit" asp-route-Id="@staff.Id" class="btn btn-primary m-1">Edit</a>
+                    <form asp-controller="home" asp-action="delete" asp-route-Id="@staff.Id" method="post">
+                        <button type="submit" class="btn btn-danger m-1" onclick="return confirm('Are you sure to delete this record?');">Delete</button>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
